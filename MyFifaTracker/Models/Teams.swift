@@ -7,10 +7,12 @@
 //
 
 import UIKit
-s
+
 struct Teams {
     
     let teamName: String
-    let teamCreated: Date()
+    let teamCreated: Date
     
 }
+
+
