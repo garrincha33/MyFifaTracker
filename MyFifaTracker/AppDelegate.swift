@@ -8,6 +8,13 @@
 
 import UIKit
 
+//create custom controller
+class CustomNavigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let teamsController = TeamsController()
+        let navController = CustomNavigationController(rootViewController: teamsController)
+        
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        window?.rootViewController = navController
         return true
     }
 
