@@ -8,13 +8,29 @@
 
 import UIKit
 
-class TeamsController: UIViewController {
+class TeamsController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
-  
+        setupNavBarStyle()
+        
+        tableView.backgroundColor = .lightRedBackGround
+        tableView.separatorStyle = .none
+        navigationItem.title = "Teams"
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "test"
+        cell.backgroundColor = .cellRed
+        return cell
+        
     }
 
 }
