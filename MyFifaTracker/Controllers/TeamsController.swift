@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TeamsController.swift
 //  MyFifaTracker
 //
 //  Created by Richard Price on 31/01/2019.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TeamsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        view.backgroundColor = .yellow
+  
     }
-
 
 }
 
