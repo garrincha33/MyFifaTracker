@@ -47,6 +47,13 @@ class TeamsController: UITableViewController {
     
     @objc fileprivate func handleAddTeam() {
         print("test add team")
+        
+        let createTeamController = CreateTeamController()
+        let navController = CustomNavigationController(rootViewController: createTeamController)
+        present(navController, animated: true, completion: nil)
+     
+        
+        
     }
     
 }
