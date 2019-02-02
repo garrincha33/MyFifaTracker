@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol createTeamControllerDelegate {
+    func addTeam(team: Teams)
+}
+
 class CreateTeamController: UIViewController {
     
+    var delegate: createTeamControllerDelegate?
+
     let nameLable: UILabel = {
         let lable = UILabel()
         lable.textColor = .white
@@ -27,13 +33,30 @@ class CreateTeamController: UIViewController {
         return tf
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightRedBackGround
         navigationItem.title = "Create Team"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         setupNavBarStyle()
         setupUI()
+    }
+    
+    @objc fileprivate func handleSave() {
+        print("test save button")
+        guard let name = nameTextField.text else {return}
+        let team = Teams(teamName: name, teamCreated: Date())
+        dismiss(animated: true) {
+            self.delegate?.addTeam(team: team)
+        }
+    }
+    
+    @objc fileprivate func handleCancel() {
+        print("test cancel button")
+        dismiss(animated: true, completion: nil)
+        
+        
     }
     
     fileprivate func setupUI() {

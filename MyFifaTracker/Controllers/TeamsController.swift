@@ -8,11 +8,18 @@
 
 import UIKit
 
-class TeamsController: UITableViewController {
+class TeamsController: UITableViewController, createTeamControllerDelegate {
+    
+    func addTeam(team: Teams) {
+        teams.append(team)
+        let newIndexPath = IndexPath(row: teams.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
+    
     
     let cellId = "cellId"
     
-    let teams = [
+    var teams = [
         Teams(teamName: "testing1", teamCreated: Date()),
         Teams(teamName: "testing2", teamCreated: Date()),
         Teams(teamName: "testing3", teamCreated: Date()),
@@ -47,13 +54,10 @@ class TeamsController: UITableViewController {
     
     @objc fileprivate func handleAddTeam() {
         print("test add team")
-        
         let createTeamController = CreateTeamController()
         let navController = CustomNavigationController(rootViewController: createTeamController)
+        createTeamController.delegate = self
         present(navController, animated: true, completion: nil)
-     
-        
-        
     }
     
 }
