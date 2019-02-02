@@ -8,12 +8,12 @@
 
 import UIKit
 
-struct Teams {
-    
-    let teamName: String
-    let teamCreated: Date
-    
-}
+//struct Teams {
+//
+//    let teamName: String
+//    let teamCreated: Date
+//
+//}
 
 
 

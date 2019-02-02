@@ -7,24 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class TeamsController: UITableViewController, createTeamControllerDelegate {
     
     func addTeam(team: Teams) {
         teams.append(team)
         let newIndexPath = IndexPath(row: teams.count - 1, section: 0)
-        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        tableView.insertRows(at: [newIndexPath], with: .middle)
     }
-    
-    
+
     let cellId = "cellId"
-    
-    var teams = [
-        Teams(teamName: "testing1", teamCreated: Date()),
-        Teams(teamName: "testing2", teamCreated: Date()),
-        Teams(teamName: "testing3", teamCreated: Date()),
-        Teams(teamName: "testing4", teamCreated: Date())
-    ]
+    var teams = [Teams]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +31,8 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
         navigationItem.title = "Teams"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAddTeam))
         
+        fetchTeams()
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,11 +41,26 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = teams[indexPath.row].teamName
+        cell.textLabel?.text = teams[indexPath.row].name
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .cellRed
         return cell
         
+    }
+    
+    fileprivate func fetchTeams() {
+        let context = CoreDataManager.shared.persistantContainer.viewContext
+        let fetchRequest = NSFetchRequest<Teams>(entityName: "Teams")
+        do {
+            let myTeams = try context.fetch(fetchRequest)
+            myTeams.forEach { (team) in
+                print(team.name ?? "")
+            }
+            self.teams = myTeams
+            self.tableView.reloadData()
+        } catch let err {
+            print("unable to fetch teams", err)
+        }
     }
     
     @objc fileprivate func handleAddTeam() {

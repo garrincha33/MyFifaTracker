@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol createTeamControllerDelegate {
     func addTeam(team: Teams)
@@ -45,10 +46,18 @@ class CreateTeamController: UIViewController {
     
     @objc fileprivate func handleSave() {
         print("test save button")
-        guard let name = nameTextField.text else {return}
-        let team = Teams(teamName: name, teamCreated: Date())
-        dismiss(animated: true) {
-            self.delegate?.addTeam(team: team)
+        
+        let context = CoreDataManager.shared.persistantContainer.viewContext
+        let team = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
+        team.setValue(nameTextField.text, forKey: "name")
+        do {
+            try context.save()
+            dismiss(animated: true) {
+                self.delegate?.addTeam(team: team as! Teams)
+            }
+            
+        } catch let err {
+            print("failed to load context", err)
         }
     }
     
