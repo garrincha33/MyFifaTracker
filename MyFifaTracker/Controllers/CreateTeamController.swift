@@ -16,7 +16,7 @@ protocol createTeamControllerDelegate {
 class CreateTeamController: UIViewController {
     
     var delegate: createTeamControllerDelegate?
-
+    
     let nameLable: UILabel = {
         let lable = UILabel()
         lable.textColor = .white
