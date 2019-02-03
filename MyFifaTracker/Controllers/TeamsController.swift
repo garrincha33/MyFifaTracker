@@ -16,7 +16,7 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
         let newIndexPath = IndexPath(row: teams.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .middle)
     }
-
+    
     let cellId = "cellId"
     var teams = [Teams]()
     
@@ -46,6 +46,31 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
         cell.backgroundColor = .cellRed
         return cell
         
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            let team = self.teams[indexPath.row]
+            print("attempting to delete team :-", team.name ?? "")
+            self.teams.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            let context = CoreDataManager.shared.persistantContainer.viewContext
+            context.delete(team)
+            
+            do {
+                try context.save()
+            } catch let err {
+                print("error deleting from coreData", err)
+            }
+            
+        }
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
+            print("attempting to edit")
+        }
+        
+        return [deleteAction, editAction]
     }
     
     fileprivate func fetchTeams() {
