@@ -11,11 +11,18 @@ import CoreData
 
 protocol createTeamControllerDelegate {
     func addTeam(team: Teams)
+    func editTeam(team: Teams)
 }
 
 class CreateTeamController: UIViewController {
     
     var delegate: createTeamControllerDelegate?
+    
+    var team: Teams? {
+        didSet {
+            nameTextField.text = team?.name
+        }
+    }
     
     let nameLable: UILabel = {
         let lable = UILabel()
@@ -33,6 +40,10 @@ class CreateTeamController: UIViewController {
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = team == nil ? "Create Team" : "Edit Team"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +57,33 @@ class CreateTeamController: UIViewController {
     
     @objc fileprivate func handleSave() {
         print("test save button")
-        
+        if team == nil {
+            createTeam()
+        } else {
+            saveTeamChanges()
+        }
+  
+    }
+    
+    @objc fileprivate func handleCancel() {
+        print("test cancel button")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    fileprivate func saveTeamChanges() {
+        let context = CoreDataManager.shared.persistantContainer.viewContext
+        team?.name = nameTextField.text
+        do {
+            try context.save()
+            dismiss(animated: true) {
+                self.delegate?.editTeam(team: self.team!)
+            }
+        } catch let err {
+            print("unable to edit team save", err)
+        }
+    }
+    
+    fileprivate func createTeam() {
         let context = CoreDataManager.shared.persistantContainer.viewContext
         let team = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
         team.setValue(nameTextField.text, forKey: "name")
@@ -59,13 +96,6 @@ class CreateTeamController: UIViewController {
         } catch let err {
             print("failed to load context", err)
         }
-    }
-    
-    @objc fileprivate func handleCancel() {
-        print("test cancel button")
-        dismiss(animated: true, completion: nil)
-        
-        
     }
     
     fileprivate func setupUI() {
