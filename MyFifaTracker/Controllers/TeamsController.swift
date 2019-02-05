@@ -11,6 +11,13 @@ import CoreData
 
 class TeamsController: UITableViewController, createTeamControllerDelegate {
     
+    func editTeam(team: Teams) {
+        let row = teams.index(of: team)
+        let reloadPath = IndexPath(row: row!, section: 0)
+        tableView.reloadRows(at: [reloadPath], with: .middle)
+    }
+    
+    
     func addTeam(team: Teams) {
         teams.append(team)
         let newIndexPath = IndexPath(row: teams.count - 1, section: 0)
@@ -66,11 +73,18 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
             
         }
         
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
-            print("attempting to edit")
-        }
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandlerFunction)
         
         return [deleteAction, editAction]
+    }
+    
+    fileprivate func editHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
+        print("test edit")
+        let editComapanyController = CreateTeamController()
+        editComapanyController.team = teams[indexPath.row]
+        editComapanyController.delegate = self
+        let navController = CustomNavigationController(rootViewController: editComapanyController)
+        present(navController, animated: true, completion: nil)
     }
     
     fileprivate func fetchTeams() {
