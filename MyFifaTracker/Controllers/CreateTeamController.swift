@@ -83,6 +83,10 @@ class CreateTeamController: UIViewController {
         }
     }
     
+    fileprivate func detectDevice() {
+        
+    }
+    
     fileprivate func createTeam() {
         let context = CoreDataManager.shared.persistantContainer.viewContext
         let team = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
