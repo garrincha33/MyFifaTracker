@@ -49,6 +49,21 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = teams[indexPath.row].name
+        
+        let team = teams[indexPath.row]
+        
+        if let t = team.name, let created = team.created {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MM yyyy"
+            let createdString = dateFormatter.string(from: created)
+            
+            let dateString = "\(t) - created :- \(createdString)"
+            cell.textLabel?.text = dateString
+        } else {
+            cell.textLabel?.text = team.name
+        }
+
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .cellRed
         return cell

@@ -21,6 +21,8 @@ class CreateTeamController: UIViewController {
     var team: Teams? {
         didSet {
             nameTextField.text = team?.name
+            guard let created = team?.created else {return}
+            datePicker.date = created
         }
     }
     
@@ -39,6 +41,18 @@ class CreateTeamController: UIViewController {
         tf.textColor = .white
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
+    }()
+    
+    let datePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        dp.translatesAutoresizingMaskIntoConstraints = false
+        dp.setValue(UIColor.white, forKey: "textColor")
+        return dp
+        
+        
+        
+        
     }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -73,6 +87,7 @@ class CreateTeamController: UIViewController {
     fileprivate func saveTeamChanges() {
         let context = CoreDataManager.shared.persistantContainer.viewContext
         team?.name = nameTextField.text
+        team?.created = datePicker.date
         do {
             try context.save()
             dismiss(animated: true) {
@@ -91,6 +106,7 @@ class CreateTeamController: UIViewController {
         let context = CoreDataManager.shared.persistantContainer.viewContext
         let team = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
         team.setValue(nameTextField.text, forKey: "name")
+        team.setValue(datePicker.date, forKey: "created")
         do {
             try context.save()
             dismiss(animated: true) {
@@ -111,7 +127,7 @@ class CreateTeamController: UIViewController {
         lightRedBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         lightRedBackgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         lightRedBackgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        lightRedBackgroundView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        lightRedBackgroundView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         
         view.addSubview(nameLable)
         nameLable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -124,6 +140,13 @@ class CreateTeamController: UIViewController {
         nameTextField.leftAnchor.constraint(equalTo: nameLable.rightAnchor, constant: 10).isActive = true
         nameTextField.bottomAnchor.constraint(equalTo: nameLable.bottomAnchor).isActive = true
         nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        view.addSubview(datePicker)
+        datePicker.topAnchor.constraint(equalTo: nameLable.bottomAnchor).isActive = true
+        datePicker.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: lightRedBackgroundView.bottomAnchor).isActive = true
+        datePicker.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
     }
     
 }
