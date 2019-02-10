@@ -14,7 +14,7 @@ protocol createTeamControllerDelegate {
     func editTeam(team: Teams)
 }
 
-class CreateTeamController: UIViewController {
+class CreateTeamController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var delegate: createTeamControllerDelegate?
     
@@ -49,11 +49,16 @@ class CreateTeamController: UIViewController {
         dp.translatesAutoresizingMaskIntoConstraints = false
         dp.setValue(UIColor.white, forKey: "textColor")
         return dp
-        
-        
-        
-        
     }()
+    
+    lazy var addImage: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+        return image
+    }()
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = team == nil ? "Create Team" : "Edit Team"
@@ -65,7 +70,6 @@ class CreateTeamController: UIViewController {
         navigationItem.title = "Create Team"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        setupNavBarStyle()
         setupUI()
     }
     
@@ -97,11 +101,7 @@ class CreateTeamController: UIViewController {
             print("unable to edit team save", err)
         }
     }
-    
-    fileprivate func detectDevice() {
-        
-    }
-    
+
     fileprivate func createTeam() {
         let context = CoreDataManager.shared.persistantContainer.viewContext
         let team = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
@@ -118,6 +118,29 @@ class CreateTeamController: UIViewController {
         }
     }
     
+    @objc fileprivate func handleSelectPhoto() {
+        print("trying to select photo")
+        let imagepickerController = UIImagePickerController()
+        imagepickerController.delegate = self
+        imagepickerController.allowsEditing = true
+        present(imagepickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            addImage.image = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            addImage.image = originalImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     fileprivate func setupUI() {
         let lightRedBackgroundView = UIView()
         lightRedBackgroundView.backgroundColor = .cellRed
@@ -127,16 +150,22 @@ class CreateTeamController: UIViewController {
         lightRedBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         lightRedBackgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         lightRedBackgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        lightRedBackgroundView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        lightRedBackgroundView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        
+        view.addSubview(addImage)
+        addImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        addImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        addImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        addImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         view.addSubview(nameLable)
-        nameLable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        nameLable.topAnchor.constraint(equalTo: addImage.bottomAnchor).isActive = true
         nameLable.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         nameLable.widthAnchor.constraint(equalToConstant: 100).isActive = true
         nameLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         view.addSubview(nameTextField)
-        nameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        nameTextField.topAnchor.constraint(equalTo: nameLable.topAnchor).isActive = true
         nameTextField.leftAnchor.constraint(equalTo: nameLable.rightAnchor, constant: 10).isActive = true
         nameTextField.bottomAnchor.constraint(equalTo: nameLable.bottomAnchor).isActive = true
         nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -146,6 +175,9 @@ class CreateTeamController: UIViewController {
         datePicker.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         datePicker.bottomAnchor.constraint(equalTo: lightRedBackgroundView.bottomAnchor).isActive = true
         datePicker.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        
+        
         
     }
     

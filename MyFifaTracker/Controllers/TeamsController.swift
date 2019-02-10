@@ -29,9 +29,7 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupNavBarStyle()
-        
+
         tableView.backgroundColor = .lightRedBackGround
         tableView.separatorStyle = .none
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)

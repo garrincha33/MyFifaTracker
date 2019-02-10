@@ -15,6 +15,12 @@ class CustomNavigationController: UINavigationController {
     }
 }
 
+extension UINavigationController {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,6 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let teamsController = TeamsController()
         let navController = CustomNavigationController(rootViewController: teamsController)
+        
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = .myRed
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        
         
         window = UIWindow()
         window?.makeKeyAndVisible()
