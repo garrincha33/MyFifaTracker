@@ -22,6 +22,20 @@ struct CoreDataManager {
         })
         return container
     }()
+    
+    
+    func resetCompanies(completion: () -> ()) {
+        let context = CoreDataManager.shared.persistantContainer.viewContext
+        let deleteBatchRequest = NSBatchDeleteRequest(fetchRequest: Teams.fetchRequest())
+        do {
+            try context.execute(deleteBatchRequest)
+            completion()
+        } catch let err {
+            print("unable to delete batch of companies \(err)")
+        }
+        
+    }
+    
 }
 
 

@@ -35,6 +35,7 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         navigationItem.title = "Teams"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAddTeam))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleBatchDelete))
         
         fetchTeams()
         
@@ -123,5 +124,16 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
         present(navController, animated: true, completion: nil)
     }
     
+    @objc fileprivate func handleBatchDelete() {
+        CoreDataManager.shared.resetCompanies {
+            var indexPathToRemove = [IndexPath]()
+            for(index, _) in teams.enumerated() {
+                let indexPath = IndexPath(row: index, section: 0)
+                indexPathToRemove.append(indexPath)
+            }
+            teams.removeAll()
+            tableView.deleteRows(at: indexPathToRemove, with: .left)
+        }
+    }
 }
 
