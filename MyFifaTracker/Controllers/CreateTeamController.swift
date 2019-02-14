@@ -23,6 +23,11 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
             nameTextField.text = team?.name
             guard let created = team?.created else {return}
             datePicker.date = created
+            
+            if let imageData = team?.imageData {
+                addImage.image = UIImage(data: imageData)
+                setCicleImage()
+            }
         }
     }
     
@@ -92,6 +97,10 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
         let context = CoreDataManager.shared.persistantContainer.viewContext
         team?.name = nameTextField.text
         team?.created = datePicker.date
+        if let teamImage = addImage.image {
+            let imageData = teamImage.jpegData(compressionQuality: 0.8)
+            team?.imageData = imageData
+        }
         do {
             try context.save()
             dismiss(animated: true) {
@@ -107,6 +116,13 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
         let team = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
         team.setValue(nameTextField.text, forKey: "name")
         team.setValue(datePicker.date, forKey: "created")
+        
+        if let teamImage = addImage.image {
+            let imageData = teamImage.jpegData(compressionQuality: 0.8)
+            team.setValue(imageData, forKey: "imageData")
+        }
+        
+        
         do {
             try context.save()
             dismiss(animated: true) {
@@ -116,6 +132,13 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
         } catch let err {
             print("failed to load context", err)
         }
+    }
+    
+    fileprivate func setCicleImage() {
+        addImage.layer.cornerRadius = addImage.frame.width / 2
+        addImage.clipsToBounds = true
+        addImage.layer.borderColor = UIColor.white.cgColor
+        addImage.layer.borderWidth = 2
     }
     
     @objc fileprivate func handleSelectPhoto() {
@@ -132,7 +155,7 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addImage.image = originalImage
         }
-        
+        setCicleImage()
         dismiss(animated: true, completion: nil)
     }
     
