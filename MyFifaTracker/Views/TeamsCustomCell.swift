@@ -10,13 +10,18 @@ import UIKit
 
 class TeamsCustomCell: UITableViewCell {
     
+    let teamImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        
-        
-        
-        
+        backgroundColor = .cellRed
+
     }
     
     required init?(coder aDecoder: NSCoder) {
