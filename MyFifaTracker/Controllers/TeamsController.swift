@@ -32,7 +32,7 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
 
         tableView.backgroundColor = .lightRedBackGround
         tableView.separatorStyle = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(TeamsCustomCell.self, forCellReuseIdentifier: cellId)
         navigationItem.title = "Teams"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAddTeam))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleBatchDelete))
@@ -64,12 +64,12 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
         }
 
         cell.textLabel?.textColor = .white
-        cell.backgroundColor = .cellRed
-        
-        if let imageData = team.imageData {
-            cell.imageView?.image = UIImage(data: imageData)
-        }
-        
+
+//
+//        if let imageData = team.imageData {
+//            cell.imageView?.image = UIImage(data: imageData)
+//        }
+//
         return cell
         
     }
