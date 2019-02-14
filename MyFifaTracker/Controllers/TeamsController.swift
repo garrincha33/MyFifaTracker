@@ -65,6 +65,11 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
 
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .cellRed
+        
+        if let imageData = team.imageData {
+            cell.imageView?.image = UIImage(data: imageData)
+        }
+        
         return cell
         
     }

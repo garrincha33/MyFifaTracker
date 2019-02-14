@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B36DEF52215DD7E005F1D86 /* TeamsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEF42215DD7E005F1D86 /* TeamsCustomCell.swift */; };
 		1B40D4FF2203747400CEF5B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40D4FE2203747400CEF5B4 /* AppDelegate.swift */; };
 		1B40D5012203747400CEF5B4 /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40D5002203747400CEF5B4 /* TeamsController.swift */; };
 		1B40D5042203747400CEF5B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B40D5022203747400CEF5B4 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B36DEF42215DD7E005F1D86 /* TeamsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCustomCell.swift; sourceTree = "<group>"; };
 		1B40D4FB2203747400CEF5B4 /* MyFifaTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFifaTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B40D4FE2203747400CEF5B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B40D5002203747400CEF5B4 /* TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		1B40D51622043BD100CEF5B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1B36DEF42215DD7E005F1D86 /* TeamsCustomCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B36DEF52215DD7E005F1D86 /* TeamsCustomCell.swift in Sources */,
 				1B40D5012203747400CEF5B4 /* TeamsController.swift in Sources */,
 				1B40D51E220444C400CEF5B4 /* Teams.swift in Sources */,
 				1B40D5202204528900CEF5B4 /* CreateTeamController.swift in Sources */,
