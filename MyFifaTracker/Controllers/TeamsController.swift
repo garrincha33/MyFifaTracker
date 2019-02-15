@@ -46,34 +46,17 @@ class TeamsController: UITableViewController, createTeamControllerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = teams[indexPath.row].name
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TeamsCustomCell
         let team = teams[indexPath.row]
-        
-        if let t = team.name, let created = team.created {
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MM yyyy"
-            let createdString = dateFormatter.string(from: created)
-            
-            let dateString = "\(t) - created :- \(createdString)"
-            cell.textLabel?.text = dateString
-        } else {
-            cell.textLabel?.text = team.name
-        }
-
-        cell.textLabel?.textColor = .white
-
-//
-//        if let imageData = team.imageData {
-//            cell.imageView?.image = UIImage(data: imageData)
-//        }
-//
+        cell.team = team
+        cell.selectionStyle = .none
         return cell
-        
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             let team = self.teams[indexPath.row]
