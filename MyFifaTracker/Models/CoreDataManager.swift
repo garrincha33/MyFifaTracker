@@ -25,7 +25,7 @@ struct CoreDataManager {
     
     
     func resetCompanies(completion: () -> ()) {
-        let context = CoreDataManager.shared.persistantContainer.viewContext
+        let context = persistantContainer.viewContext
         let deleteBatchRequest = NSBatchDeleteRequest(fetchRequest: Teams.fetchRequest())
         do {
             try context.execute(deleteBatchRequest)
@@ -36,6 +36,18 @@ struct CoreDataManager {
         
     }
     
+    func fetchTeams() -> [Teams] {
+        let context = persistantContainer.viewContext
+        let fetchRequest = NSFetchRequest<Teams>(entityName: "Teams")
+        
+        do {
+            let myTeams = try context.fetch(fetchRequest)
+            return myTeams
+        } catch let err {
+            print("unable to fetch teams \(err)")
+            return []
+        }
+    }
 }
 
 
