@@ -12,20 +12,17 @@ class TeamsCustomCell: UITableViewCell {
     
     var team: Teams? {
         didSet {
-            
             print(team?.name ?? "")
             teamNameCreatedLable.text = team?.name
             
             if let imageData = team?.imageData {
-            teamImage.image = UIImage(data: imageData)
+                teamImage.image = UIImage(data: imageData)
             }
             
             if let t = team?.name, let created = team?.created {
-                
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd MM yyyy"
                 let createdString = dateFormatter.string(from: created)
-                
                 let dateString = "\(t): created, \(createdString)"
                 teamNameCreatedLable.text = dateString
             } else {
@@ -58,12 +55,15 @@ class TeamsCustomCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .cellRed
-        view.layer.cornerRadius = 20
         view.clipsToBounds = true
-//        view.layer.shadowOpacity = 1.8
-//        view.layer.shadowRadius = 4.0
-//        view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-//        view.layer.shadowColor = UIColor.green.cgColor
+        //layers
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = false
+        view.layer.shadowOpacity = 0.8
+        view.layer.shadowRadius = 3.0
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        view.layer.shadowColor = UIColor(red: 157/255, green: 157/255, blue: 157/255, alpha: 1.0).cgColor
+        //borders
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         return view
@@ -88,11 +88,11 @@ class TeamsCustomCell: UITableViewCell {
         
         addSubview(teamNameCreatedLable)
         teamNameCreatedLable.leftAnchor.constraint(equalTo: teamImage.rightAnchor, constant: 8).isActive = true
-        teamNameCreatedLable.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        teamNameCreatedLable.topAnchor.constraint(equalTo: topAnchor, constant: 4).isActive = true
         teamNameCreatedLable.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         teamNameCreatedLable.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
