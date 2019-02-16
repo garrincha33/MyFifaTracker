@@ -10,7 +10,6 @@ import UIKit
 
 class TeamsCustomCell: UITableViewCell {
     
-    
     var team: Teams? {
         didSet {
             print(team?.name ?? "")

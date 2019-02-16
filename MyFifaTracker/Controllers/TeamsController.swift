@@ -22,10 +22,10 @@ class TeamsController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(TeamsCustomCell.self, forCellReuseIdentifier: cellId)
         navigationItem.title = "Teams"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus1"), style: .plain, target: self, action: #selector(handleAddTeam))
+        setupNavControllerButtonsInNavBar(selector: #selector(handleAddTeam))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "reset1"), style: .plain, target: self, action: #selector(handleBatchDelete))
         fetchTeams()
-        //superGradientLayer()
+        
         
     }
     
