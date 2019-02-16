@@ -48,6 +48,19 @@ struct CoreDataManager {
             return []
         }
     }
+    
+    func savePlayer(name: String) -> Error? {
+        let context = persistantContainer.viewContext
+        let player = NSEntityDescription.insertNewObject(forEntityName: "Players", into: context)
+        player.setValue(name, forKey: "name")
+        do {
+            try context.save()
+            return nil
+        } catch let err {
+            print("unable to save player to coredata \(err)")
+            return err
+        }
+    }
 }
 
 
