@@ -10,6 +10,9 @@
 		1B36DEF52215DD7E005F1D86 /* TeamsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEF42215DD7E005F1D86 /* TeamsCustomCell.swift */; };
 		1B36DEF722170645005F1D86 /* +TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEF622170645005F1D86 /* +TeamsController.swift */; };
 		1B36DEF92217078A005F1D86 /* +TeamsControllerTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEF82217078A005F1D86 /* +TeamsControllerTableViews.swift */; };
+		1B36DEFB2218361D005F1D86 /* PlayersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEFA2218361D005F1D86 /* PlayersController.swift */; };
+		1B36DEFE2218383D005F1D86 /* +UiviewControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEFD2218383D005F1D86 /* +UiviewControllerHelpers.swift */; };
+		1B36DF002218396B005F1D86 /* CreatePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36DEFF2218396B005F1D86 /* CreatePlayerController.swift */; };
 		1B40D4FF2203747400CEF5B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40D4FE2203747400CEF5B4 /* AppDelegate.swift */; };
 		1B40D5012203747400CEF5B4 /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40D5002203747400CEF5B4 /* TeamsController.swift */; };
 		1B40D5042203747400CEF5B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B40D5022203747400CEF5B4 /* Main.storyboard */; };
@@ -27,6 +30,9 @@
 		1B36DEF42215DD7E005F1D86 /* TeamsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCustomCell.swift; sourceTree = "<group>"; };
 		1B36DEF622170645005F1D86 /* +TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+TeamsController.swift"; sourceTree = "<group>"; };
 		1B36DEF82217078A005F1D86 /* +TeamsControllerTableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+TeamsControllerTableViews.swift"; sourceTree = "<group>"; };
+		1B36DEFA2218361D005F1D86 /* PlayersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersController.swift; sourceTree = "<group>"; };
+		1B36DEFD2218383D005F1D86 /* +UiviewControllerHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UiviewControllerHelpers.swift"; sourceTree = "<group>"; };
+		1B36DEFF2218396B005F1D86 /* CreatePlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlayerController.swift; sourceTree = "<group>"; };
 		1B40D4FB2203747400CEF5B4 /* MyFifaTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFifaTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B40D4FE2203747400CEF5B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B40D5002203747400CEF5B4 /* TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsController.swift; sourceTree = "<group>"; };
@@ -53,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B36DEFC22183824005F1D86 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1B36DEFD2218383D005F1D86 /* +UiviewControllerHelpers.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		1B40D4F22203747400CEF5B4 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +86,7 @@
 		1B40D4FD2203747400CEF5B4 /* MyFifaTracker */ = {
 			isa = PBXGroup;
 			children = (
+				1B36DEFC22183824005F1D86 /* Utils */,
 				1B40D51822043BF900CEF5B4 /* Extensions */,
 				1B40D51722043BDA00CEF5B4 /* Models */,
 				1B40D51622043BD100CEF5B4 /* Views */,
@@ -91,6 +106,8 @@
 			children = (
 				1B40D5002203747400CEF5B4 /* TeamsController.swift */,
 				1B40D51F2204528900CEF5B4 /* CreateTeamController.swift */,
+				1B36DEFA2218361D005F1D86 /* PlayersController.swift */,
+				1B36DEFF2218396B005F1D86 /* CreatePlayerController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,12 +215,15 @@
 				1B40D5012203747400CEF5B4 /* TeamsController.swift in Sources */,
 				1B36DEF92217078A005F1D86 /* +TeamsControllerTableViews.swift in Sources */,
 				1B40D51E220444C400CEF5B4 /* Teams.swift in Sources */,
+				1B36DF002218396B005F1D86 /* CreatePlayerController.swift in Sources */,
 				1B40D5202204528900CEF5B4 /* CreateTeamController.swift in Sources */,
 				1B40D51C22043C4000CEF5B4 /* +UIColor.swift in Sources */,
 				1B40D5232205921400CEF5B4 /* FifaTracker.xcdatamodeld in Sources */,
 				1B40D4FF2203747400CEF5B4 /* AppDelegate.swift in Sources */,
+				1B36DEFE2218383D005F1D86 /* +UiviewControllerHelpers.swift in Sources */,
 				1B40D5252205922B00CEF5B4 /* CoreDataManager.swift in Sources */,
 				1B36DEF722170645005F1D86 /* +TeamsController.swift in Sources */,
+				1B36DEFB2218361D005F1D86 /* PlayersController.swift in Sources */,
 				1B40D51A22043C2100CEF5B4 /* +UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

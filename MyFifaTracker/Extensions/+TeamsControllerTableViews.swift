@@ -10,7 +10,13 @@ import UIKit
 
 extension TeamsController {
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let playersController = PlayersController()
+        let team = teams[indexPath.row]
+        playersController.team = team
+        navigationController?.pushViewController(playersController, animated: true)
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teams.count
     }
