@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol createPlayerControllerDelegate {
+    func didAddPlayer(player: Players)
+}
+
 class CreatePlayerController: UIViewController {
+    
+    var delegate: createPlayerControllerDelegate?
     
     let nameLable: UILabel = {
         let lable = UILabel()
@@ -46,12 +52,15 @@ class CreatePlayerController: UIViewController {
     @objc fileprivate func handleSavePlayer() {
         
         guard let name = nameTextField.text else {return}
-        let error = CoreDataManager.shared.savePlayer(name: name)
+        let tuplePlayerError = CoreDataManager.shared.savePlayer(name: name)
         
-        if let error = error {
+        if let error = tuplePlayerError.1 {
             print(error)
         } else {
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true) {
+                self.delegate?.didAddPlayer(player: tuplePlayerError.0!)
+            }
+            
         }
     }
     
@@ -67,7 +76,7 @@ class CreatePlayerController: UIViewController {
         nameTextField.leftAnchor.constraint(equalTo: nameLable.rightAnchor, constant: 10).isActive = true
         nameTextField.bottomAnchor.constraint(equalTo: nameLable.bottomAnchor).isActive = true
         nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-  
+        
     }
     
 }

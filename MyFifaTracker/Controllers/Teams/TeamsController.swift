@@ -25,8 +25,6 @@ class TeamsController: UITableViewController {
         setupNavControllerButtonsInNavBar(selector: #selector(handleAddTeam))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "reset1"), style: .plain, target: self, action: #selector(handleBatchDelete))
         fetchTeams()
-        
-        
     }
     
     fileprivate func fetchTeams() {
