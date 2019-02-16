@@ -67,6 +67,24 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		1B36DF0122186B04005F1D86 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				1B36DEFF2218396B005F1D86 /* CreatePlayerController.swift */,
+				1B36DEFA2218361D005F1D86 /* PlayersController.swift */,
+			);
+			path = Players;
+			sourceTree = "<group>";
+		};
+		1B36DF0222186B13005F1D86 /* Teams */ = {
+			isa = PBXGroup;
+			children = (
+				1B40D51F2204528900CEF5B4 /* CreateTeamController.swift */,
+				1B40D5002203747400CEF5B4 /* TeamsController.swift */,
+			);
+			path = Teams;
+			sourceTree = "<group>";
+		};
 		1B40D4F22203747400CEF5B4 = {
 			isa = PBXGroup;
 			children = (
@@ -104,10 +122,8 @@
 		1B40D51522043BC100CEF5B4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1B40D5002203747400CEF5B4 /* TeamsController.swift */,
-				1B40D51F2204528900CEF5B4 /* CreateTeamController.swift */,
-				1B36DEFA2218361D005F1D86 /* PlayersController.swift */,
-				1B36DEFF2218396B005F1D86 /* CreatePlayerController.swift */,
+				1B36DF0222186B13005F1D86 /* Teams */,
+				1B36DF0122186B04005F1D86 /* Players */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
