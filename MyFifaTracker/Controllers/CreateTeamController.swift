@@ -57,9 +57,10 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
     }()
     
     lazy var addImage: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
+        let image = UIImageView(image: #imageLiteral(resourceName: "camera"))
         image.translatesAutoresizingMaskIntoConstraints = false
         image.isUserInteractionEnabled = true
+        image.contentMode = .scaleAspectFit
         image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
         return image
     }()

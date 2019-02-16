@@ -10,6 +10,7 @@ import UIKit
 
 class TeamsCustomCell: UITableViewCell {
     
+    
     var team: Teams? {
         didSet {
             print(team?.name ?? "")
@@ -62,13 +63,14 @@ class TeamsCustomCell: UITableViewCell {
         view.layer.shadowOpacity = 0.8
         view.layer.shadowRadius = 3.0
         view.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        view.layer.shadowColor = UIColor(red: 157/255, green: 157/255, blue: 157/255, alpha: 1.0).cgColor
+        view.layer.shadowColor = UIColor(red: 157/255, green: 157/255, blue: 157/255, alpha: 1.0).cgColor //gray
         //borders
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         return view
     }()
-    
+
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

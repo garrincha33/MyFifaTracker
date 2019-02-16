@@ -14,6 +14,7 @@ class TeamsController: UITableViewController {
     let cellId = "cellId"
     var teams = [Teams]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +22,10 @@ class TeamsController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(TeamsCustomCell.self, forCellReuseIdentifier: cellId)
         navigationItem.title = "Teams"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAddTeam))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleBatchDelete))
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus1"), style: .plain, target: self, action: #selector(handleAddTeam))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "reset1"), style: .plain, target: self, action: #selector(handleBatchDelete))
         fetchTeams()
+        //superGradientLayer()
         
     }
     
