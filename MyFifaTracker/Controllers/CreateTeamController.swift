@@ -166,15 +166,7 @@ class CreateTeamController: UIViewController, UINavigationControllerDelegate, UI
     
     
     fileprivate func setupUI() {
-        let lightRedBackgroundView = UIView()
-        lightRedBackgroundView.backgroundColor = .cellRed
-        lightRedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(lightRedBackgroundView)
-        lightRedBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        lightRedBackgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        lightRedBackgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        lightRedBackgroundView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        let lightRedBackgroundView = setupLightRedBackGroundView(height: 350)
         
         view.addSubview(addImage)
         addImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true

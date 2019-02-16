@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatePlayerController: UITableViewController {
+class CreatePlayerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,7 @@ class CreatePlayerController: UITableViewController {
         view.backgroundColor = .lightRedBackGround
         navigationItem.title = "Add Player"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(handleCancelButton))
+        _ = setupLightRedBackGroundView(height: 150)
     }
     
     @objc fileprivate func handleCancelButton() {
