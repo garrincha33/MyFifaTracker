@@ -13,5 +13,21 @@ extension UIViewController {
     func setupNavControllerButtonsInNavBar(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus1"), style: .plain, target: self, action: selector)
     }
+    
+    func setupLightRedBackGroundView(height: CGFloat) -> UIView {
+        
+        let lightRedBackgroundView = UIView()
+        lightRedBackgroundView.backgroundColor = .cellRed
+        lightRedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(lightRedBackgroundView)
+        lightRedBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        lightRedBackgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        lightRedBackgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        lightRedBackgroundView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        
+        return lightRedBackgroundView
+        
+    }
 
 }
