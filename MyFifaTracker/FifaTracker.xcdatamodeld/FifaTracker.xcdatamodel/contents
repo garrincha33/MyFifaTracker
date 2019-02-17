@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PlayerPositions" representedClassName="PlayerPositions" syncable="YES" codeGenerationType="class">
+        <attribute name="cam" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cdm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cf" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gk" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="st" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="players" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Players" inverseName="playersPositions" inverseEntity="Players" syncable="YES"/>
+    </entity>
     <entity name="Players" representedClassName="Players" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="playersPositions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerPositions" inverseName="players" inverseEntity="PlayerPositions" syncable="YES"/>
         <relationship name="playersstats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayersStats" inverseName="players" inverseEntity="PlayersStats" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teams" inverseName="players" inverseEntity="Teams" syncable="YES"/>
     </entity>
     <entity name="PlayersStats" representedClassName="PlayersStats" syncable="YES" codeGenerationType="class">
         <attribute name="assists" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,10 +29,12 @@
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Players" inverseName="team" inverseEntity="Players" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Teams" positionX="-48.59765625" positionY="-149.53515625" width="128" height="90"/>
-        <element name="Players" positionX="-54" positionY="18" width="128" height="73"/>
-        <element name="PlayersStats" positionX="381.49609375" positionY="1.3203125" width="128" height="88"/>
+        <element name="Teams" positionX="257.4140625" positionY="195.90625" width="128" height="103"/>
+        <element name="Players" positionX="-54" positionY="18" width="128" height="103"/>
+        <element name="PlayersStats" positionX="462.74609375" positionY="1.25" width="128" height="88"/>
+        <element name="PlayerPositions" positionX="171" positionY="153" width="128" height="225"/>
     </elements>
 </model>

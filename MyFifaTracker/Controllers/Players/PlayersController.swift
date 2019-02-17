@@ -36,19 +36,23 @@ class PlayersController: UITableViewController, createPlayerControllerDelegate {
     }
     
     fileprivate func fetchPlayers() {
-        let context = CoreDataManager.shared.persistantContainer.viewContext
-        let fetchRequest = NSFetchRequest<Players>(entityName: "Players")
-        do {
-            let players = try context.fetch(fetchRequest)
-            self.players = players
-        } catch let err {
-            print("unable to fetch players", err)
-        }
+//        let context = CoreDataManager.shared.persistantContainer.viewContext
+//        let fetchRequest = NSFetchRequest<Players>(entityName: "Players")
+//        do {
+//            let players = try context.fetch(fetchRequest)
+//            self.players = players
+//        } catch let err {
+//            print("unable to fetch players", err)
+//        }
+        guard let teamPlayers = team?.players?.allObjects as? [Players] else {return}
+        self.players = teamPlayers
+        
     }
     
     @objc fileprivate func handleAddPlayer() {
         let createPlayerController = CreatePlayerController()
         createPlayerController.delegate = self
+        createPlayerController.team = team
         let navController = CustomNavigationController(rootViewController: createPlayerController)
         present(navController, animated: true, completion: nil)
     }
@@ -66,7 +70,7 @@ class PlayersController: UITableViewController, createPlayerControllerDelegate {
         cell.textLabel?.text = player.name
         
         if let goal = player.playersstats?.goals {
-            cell.textLabel?.text = "\(player.name ?? "")    \(goal)"
+            cell.textLabel?.text = "\(player.name ?? ""),    Total Goals:- \(goal)"
         }
         
         cell.textLabel?.textColor = .white
