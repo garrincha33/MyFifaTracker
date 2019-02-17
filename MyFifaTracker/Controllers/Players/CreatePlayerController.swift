@@ -50,7 +50,6 @@ class CreatePlayerController: UIViewController {
     }
     
     @objc fileprivate func handleSavePlayer() {
-        
         guard let name = nameTextField.text else {return}
         let tuplePlayerError = CoreDataManager.shared.savePlayer(name: name)
         
@@ -60,7 +59,6 @@ class CreatePlayerController: UIViewController {
             dismiss(animated: true) {
                 self.delegate?.didAddPlayer(player: tuplePlayerError.0!)
             }
-            
         }
     }
     

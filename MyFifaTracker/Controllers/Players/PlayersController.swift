@@ -62,7 +62,13 @@ class PlayersController: UITableViewController, createPlayerControllerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = players[indexPath.row].name
+        let player = players[indexPath.row]
+        cell.textLabel?.text = player.name
+        
+        if let goal = player.playersstats?.goals {
+            cell.textLabel?.text = "\(player.name ?? "")    \(goal)"
+        }
+        
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
         cell.backgroundColor = .cellRed
