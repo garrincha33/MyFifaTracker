@@ -53,6 +53,15 @@ struct CoreDataManager {
         let context = persistantContainer.viewContext
         let player = NSEntityDescription.insertNewObject(forEntityName: "Players", into: context) as! Players
         player.setValue(name, forKey: "name")
+        
+        let playerStats = NSEntityDescription.insertNewObject(forEntityName: "PlayersStats", into: context) as! PlayersStats
+        playerStats.setValue("15", forKey: "goals")
+        
+        print("value set of: - \(playerStats.goals ?? "")" )
+        
+        //IMPORTANT nothing will render without this
+        player.playersstats = playerStats
+  
         do {
             try context.save()
             return (player, nil)

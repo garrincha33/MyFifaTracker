@@ -2,6 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Players" representedClassName="Players" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="playersstats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayersStats" inverseName="players" inverseEntity="PlayersStats" syncable="YES"/>
+    </entity>
+    <entity name="PlayersStats" representedClassName="PlayersStats" syncable="YES" codeGenerationType="class">
+        <attribute name="assists" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goals" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="players" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Players" inverseName="playersstats" inverseEntity="Players" syncable="YES"/>
     </entity>
     <entity name="Teams" representedClassName="Teams" syncable="YES" codeGenerationType="class">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -9,7 +15,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Teams" positionX="-54" positionY="-9" width="128" height="90"/>
-        <element name="Players" positionX="-54" positionY="18" width="128" height="60"/>
+        <element name="Teams" positionX="-48.59765625" positionY="-149.53515625" width="128" height="90"/>
+        <element name="Players" positionX="-54" positionY="18" width="128" height="73"/>
+        <element name="PlayersStats" positionX="381.49609375" positionY="1.3203125" width="128" height="88"/>
     </elements>
 </model>
