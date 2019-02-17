@@ -68,9 +68,9 @@ class PlayersController: UITableViewController, createPlayerControllerDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let player = players[indexPath.row]
         cell.textLabel?.text = player.name
-        
-        if let goal = player.playersstats?.goals {
-            cell.textLabel?.text = "\(player.name ?? ""),    Total Goals:- \(goal)"
+
+        if let position = player.playersPositions?.position {
+            cell.textLabel?.text = "\(player.name ?? "")   \(position)"
         }
         
         cell.textLabel?.textColor = .white

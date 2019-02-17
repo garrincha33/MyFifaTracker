@@ -49,22 +49,20 @@ struct CoreDataManager {
         }
     }
     
-    func savePlayer(name: String, team: Teams) -> (Players?, Error?) {
+    func savePlayer(name: String, team: Teams, position: String) -> (Players?, Error?) {
         let context = persistantContainer.viewContext
         
         //create player
         let player = NSEntityDescription.insertNewObject(forEntityName: "Players", into: context) as! Players
         player.setValue(name, forKey: "name")
-        
         player.team = team
 
-        let playerStats = NSEntityDescription.insertNewObject(forEntityName: "PlayersStats", into: context) as! PlayersStats
-        playerStats.setValue("15", forKey: "goals")
+        let playerPosition = NSEntityDescription.insertNewObject(forEntityName: "PlayerPositions", into: context) as! PlayerPositions
+        playerPosition.position = position
         
-        print("value set of: - \(playerStats.goals ?? "")" )
         
         //IMPORTANT nothing will render without this
-        player.playersstats = playerStats
+        player.playersPositions = playerPosition
   
         do {
             try context.save()
