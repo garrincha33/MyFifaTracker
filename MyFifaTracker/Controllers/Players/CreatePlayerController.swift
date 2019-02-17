@@ -14,6 +14,7 @@ protocol createPlayerControllerDelegate {
 
 class CreatePlayerController: UIViewController {
     
+    var team: Teams?
     var delegate: createPlayerControllerDelegate?
     
     let nameLable: UILabel = {
@@ -51,7 +52,9 @@ class CreatePlayerController: UIViewController {
     
     @objc fileprivate func handleSavePlayer() {
         guard let name = nameTextField.text else {return}
-        let tuplePlayerError = CoreDataManager.shared.savePlayer(name: name)
+        guard let team = self.team else {return}
+ 
+        let tuplePlayerError = CoreDataManager.shared.savePlayer(name: name, team: team)
         
         if let error = tuplePlayerError.1 {
             print(error)
